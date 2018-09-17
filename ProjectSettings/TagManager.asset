@@ -38,7 +38,7 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
+  - name: Platform
     uniqueID: 2111794891
     locked: 0
   - name: Default
