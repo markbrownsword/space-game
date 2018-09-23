@@ -4,7 +4,7 @@ Unity game built with Tilemaps and Entity Component System
 
 ### Prerequisites
 
-- For use with Unity 2018.3.0b1 onwards.
+- For use with Unity 2018.3.0b2 onwards.
 
 ### Resources
 
