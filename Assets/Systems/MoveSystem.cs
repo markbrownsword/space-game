@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Unity.Entities;
 
-[UpdateAfter(typeof(UnityEngine.Experimental.PlayerLoop.FixedUpdate))]
 public class MoveSystem : ComponentSystem
 {
     public struct Data
@@ -21,16 +20,23 @@ public class MoveSystem : ComponentSystem
         for (int i = 0; i < data.Length; i++)
         {
             var gameObject = data.GameObjects[i];
+            var moveComponent = data.MoveComponents[i];
+            var rb2d = data.rb2ds[i];
+
+            var inputX = 0.0f;
+            var inputY = 0.0f;
+
             if (gameObject.tag == "Player")
             {
-                Debug.Log("Player!");
+                inputX = Input.GetAxis("Horizontal") * moveComponent.speed;
+                inputY = rb2d.velocity.y;
             }
             else
             {
                 Debug.Log("Enemy!");
             }
 
-            Debug.Log(data.rb2ds[i].position);
+            rb2d.velocity = new Vector2(inputX, inputY);
         }
     }
 }
