@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Unity.Entities;
 
+[UpdateAfter(typeof(UnityEngine.Experimental.PlayerLoop.FixedUpdate))]
 public class MoveSystem : ComponentSystem
 {
     public struct Data
@@ -24,12 +25,12 @@ public class MoveSystem : ComponentSystem
             var rb2d = data.rb2ds[i];
 
             var inputX = 0.0f;
-            var inputY = 0.0f;
+            var inputY = rb2d.velocity.y;
 
             if (gameObject.tag == "Player")
             {
                 inputX = Input.GetAxis("Horizontal") * moveComponent.speed;
-                inputY = rb2d.velocity.y;
+                Debug.Log(string.Format("Player InputX: {0}", inputX));
             }
             else
             {
