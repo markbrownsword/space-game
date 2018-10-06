@@ -1,12 +1,11 @@
 # Space Game
 
-Unity game built with Tilemaps and Entity Component System
+Unity game built with Tilemaps and CineMachine
 
 ### Prerequisites
 
-- For use with Unity 2018.3.0b2 onwards.
+- For use with Unity 2018.3.0b4 onwards.
 
 ### Resources
 
-[Introduction to ECS](https://unity3d.com/learn/tutorials/topics/scripting/introduction-ecs?playlist=17117)
-[ECS in Detail](https://github.com/Unity-Technologies/EntityComponentSystemSamples/blob/master/Documentation/content/ecs_in_detail.md)
+[2D World building w/ Tilemap & Cinemachine for 2D - Confined Follow Camera](https://www.youtube.com/watch?v=M7v1TGQnJ7I)
