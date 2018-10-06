@@ -29,7 +29,7 @@ public class MoveSystem : ComponentSystem
 
             if (gameObject.tag == "Player")
             {
-                inputX = Input.GetAxis("Horizontal") * moveComponent.speed;
+                inputX = Mathf.Lerp(0, Input.GetAxis("Horizontal") * moveComponent.speed, 1f);
                 Debug.Log(string.Format("Player InputX: {0}", inputX));
             }
             else
