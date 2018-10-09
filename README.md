@@ -8,4 +8,5 @@ Unity game built with Tilemaps and CineMachine
 
 ### Resources
 
-[2D World building w/ Tilemap & Cinemachine for 2D - Confined Follow Camera](https://www.youtube.com/watch?v=M7v1TGQnJ7I)
+[2D World building w/ Tilemap & Cinemachine for 2D - Confined Follow Camera](https://unity3d.com/learn/tutorials/topics/2d-game-creation/confined-follow-camera-cinemachine-2d)
+[Player Controller Script](https://unity3d.com/learn/tutorials/topics/2d-game-creation/player-controller-script?playlist=17093)

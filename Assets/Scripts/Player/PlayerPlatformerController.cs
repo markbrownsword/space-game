@@ -8,22 +8,22 @@ public class PlayerPlatformerController : PhysicsObject
     private SpriteRenderer spriteRenderer;
     private Animator animator;
 
-    void Awake() 
+    void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>(); 
+        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
 
     protected override void ComputeVelocity()
     {
         Vector2 move = Vector2.zero;
-        move.x = Input.GetAxis ("Horizontal");
+        move.x = Input.GetAxis("Horizontal");
 
-        if (Input.GetButtonDown ("Jump") && grounded)
+        if (Input.GetButtonDown("Jump") && grounded)
         {
             velocity.y = jumpTakeOffSpeed;
         }
-        else if (Input.GetButtonUp ("Jump")) 
+        else if (Input.GetButtonUp("Jump"))
         {
             if (velocity.y > 0)
             {
@@ -31,22 +31,37 @@ public class PlayerPlatformerController : PhysicsObject
             }
         }
 
-        if (move.x > 0.01f)
+        // Determine if the player is facing right or left
+        var facing = spriteRenderer.flipX ? Facing.Left : Facing.Right;
+
+        // Determine if the player is moving right or left
+        if (move.x > 0.01f) // Moving Right
         {
-            if(spriteRenderer.flipX == true)
+            if (spriteRenderer.flipX == true)
             {
                 spriteRenderer.flipX = false;
+                facing = Facing.Right;
             }
-        } 
-        else if (move.x < -0.01f)
+        }
+        else if (move.x < -0.01f) // Moving Left
         {
             if (spriteRenderer.flipX == false)
             {
                 spriteRenderer.flipX = true;
+                facing = Facing.Left;
             }
         }
 
-        animator.SetBool ("IsIdle", grounded && Mathf.Abs(velocity.x) == 0);
-        targetVelocity = move * maxSpeed;
+        // Determine if the player has reached edge of screen
+        if (CheckCameraBounds(Camera.main, transform, spriteRenderer, facing))
+        {
+            targetVelocity = Vector2.zero;
+            animator.SetBool("IsIdle", true);
+        }
+        else
+        {
+            targetVelocity = move * maxSpeed;
+            animator.SetBool("IsIdle", grounded && Mathf.Abs(velocity.x) == 0);
+        }
     }
 }
