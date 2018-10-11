@@ -57,11 +57,17 @@ public class PlayerPlatformerController : PhysicsObject
         {
             targetVelocity = Vector2.zero;
             animator.SetBool("IsIdle", true);
+            animator.SetBool("IsJumping", false);
         }
         else
         {
             targetVelocity = move * maxSpeed;
-            animator.SetBool("IsIdle", grounded && Mathf.Abs(velocity.x) == 0);
+
+            var IsIdle = grounded && Mathf.Abs(velocity.x) == 0;
+            var isJumping = !grounded && !IsIdle;
+
+            animator.SetBool("IsIdle", IsIdle);
+            animator.SetBool("IsJumping", isJumping);
         }
     }
 }
