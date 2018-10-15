@@ -4,7 +4,8 @@ using UnityEngine;
 public abstract class PhysicsObject : MonoBehaviour
 {
     public float minGroundNormalY = .65f;
-    public float gravityModifier = 1f;
+    public float gravityModifier = 1.5f;
+    public float jumpVelocityModifier = 0.5f;
 
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
@@ -63,7 +64,9 @@ public abstract class PhysicsObject : MonoBehaviour
     void FixedUpdate()
     {
         velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
-        velocity.x = targetVelocity.x;
+
+        // Determine velocity x when on the ground or in the air
+        velocity.x = grounded ? targetVelocity.x : targetVelocity.x * jumpVelocityModifier;
 
         grounded = false;
 
